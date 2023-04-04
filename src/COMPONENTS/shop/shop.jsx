@@ -2,24 +2,36 @@ import React,{useEffect, useState} from 'react'
 import { getProducts } from '../../apis/shop';
 import Products from './products';
 import './shop.scss'
+import { useLocation, useNavigate, redirect} from 'react-router-dom';
 
 export default function ShopHome({category, limit, classFix, view}) {
 
     const [products, setProducts] = useState([]);
+    const [load, setLoad] = useState(false)
+    let location = useLocation()
 
     //console.log(category.data.displayName)
     //console.log(category.data.categoryName)
 
 useEffect(() => {
 
+    setLoad(true)
+
+
     getProducts(category.data.categoryName)
     .then(e => {
 
-        setProducts(e.data)
+        setProducts(e.data);
+
+        setTimeout(() => {
+
+            setLoad(false)
+            
+        }, 500);
 
     })
 
-}, []);
+}, [category.data.categoryName]);
 
    <div className="d">shop</div>
 
@@ -29,6 +41,12 @@ useEffect(() => {
     
 
     <div className="shopHome">
+
+        {
+            load && location.pathname === '/shop' ? <div className="bigLoader">
+            Loading...
+        </div> : null
+        }
 
       
 

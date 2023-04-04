@@ -2,8 +2,6 @@ import React,{useState, useEffect} from 'react'
 
 export default function Products({products}) {
 
-    console.log(products.data)
-
   return (
 
     <div className="product">

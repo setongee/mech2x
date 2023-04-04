@@ -13,6 +13,20 @@ export const getCategory = async () => {
     .then((response) => response.json())
     .then((data) => dataPack = data );
 
+    console.log(dataPack)
+
+    return dataPack;
+
+}
+
+export const getACategory = async (category) => {
+
+    var dataPack = [];
+
+    await fetch(`${currentUse}/api/v1/category/${category}`)
+    .then((response) => response.json())
+    .then((data) => dataPack = data );
+
 
     return dataPack;
 
