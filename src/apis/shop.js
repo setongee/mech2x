@@ -3,7 +3,7 @@ import axios from 'axios'
 const liveUrl = "https://stingray-app-69wlp.ondigitalocean.app"
 const testUrl = "http://localhost:3300"
 
-const currentUse = testUrl;
+const currentUse = liveUrl;
 
 export const getCategory = async () => {
 
