@@ -1,6 +1,34 @@
 import React,{useState, useEffect} from 'react'
+import { addProductToCart, getCartfromDB } from '../../apis/cart'
 
-export default function Products({products}) {
+export default function Products({products, mix}) {
+
+const addToCart = () => {
+
+    addProductToCart(products.uid);
+    setAddedToCart(true);
+
+}
+
+const [addedToCart, setAddedToCart] = useState(false);
+
+useEffect(() => {
+
+    
+    getCartfromDB()
+    .then( (e) => {
+
+        const lo = e.filter(  res => {
+            return res.id === products.uid
+        }  )
+
+        if (lo.length) setAddedToCart(true);
+
+    } )
+    
+
+}, []);
+
 
   return (
 
@@ -39,7 +67,9 @@ export default function Products({products}) {
 
         </div>
 
-        <div className="addBag">Add to Bag</div>
+        {
+            addedToCart ? <div className="addBag addedToBag" > Added to bag </div> : <div className="addBag" onClick={ () => addToCart() } >Add to Bag</div>
+        }
 
     </div>
 

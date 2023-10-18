@@ -11,7 +11,6 @@ export default function Shop() {
   const [filterValue, setFilterValue] = useState('all');
   const [filtersArr, setFiltersArr] = useState([]);
 
-
   let location = useLocation()
   let navigate = useNavigate()
 
@@ -39,8 +38,6 @@ export default function Shop() {
   
   useEffect(() => {
     
-    console.log(location.search.split("=")[1]);
-    
     const map = shopCategoriesDemo.filter( e => {
 
       return e.data.id === filterValue
@@ -57,6 +54,8 @@ export default function Shop() {
 
   }, [filterValue]);
 
+
+
   return (
 
 
@@ -72,9 +71,9 @@ export default function Shop() {
 
                 {
 
-                  filtersArr.length ? filtersArr.map( data => {
+                  filtersArr.length ? filtersArr.map( (data, index) => {
 
-                    return <div className= {`filter ${data.data.id} ${ location.search.split("=")[1] === data.data.id ? 'current' : '' }`} onClick = { () => { navigate(`/shop?filters=${data.data.id}`); setFilterValue(data.data.id) } } >  {data.data.displayName} </div>
+                    return <div key = {index} className= {`filter ${data.data.id} ${ location.search.split("=")[1] === data.data.id ? 'current' : '' }`} onClick = { () => { navigate(`/shop?filters=${data.data.id}`); setFilterValue(data.data.id) } } >  {data.data.displayName} </div>
 
                   } ) : null
 

@@ -84,6 +84,10 @@
                 margin-top: 10px;
                 cursor: pointer;
 
+                &.addedToBag{
+                    background-color: rgb(39, 168, 39);
+                }
+
             }
 
             .contentDeep{

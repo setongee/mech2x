@@ -1,54 +1,151 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
+import { getSingleProduct } from '../../apis/shop';
+import { updateProductQuantity, updateProductSize } from '../../apis/cart';
 
-export default function CartItem() {
+export default function CartItem({data, deleteProduct, index, activity}) {
+
+    const [ productInfo, setProductInfo ] = useState({
+
+        ProductName : "",
+        category : "",
+        categoryName : "",
+        description : "",
+        id : "",
+        photo : "",
+        price : "",
+        sizes : []
+
+    });
+
+
+
+    const [quantity, setQuantity] = useState(data.quantity);
+    const [price, setPrice] = useState(data.price);
+    const [preferredSize, setPreferredSize] = useState("")
+
+
+
+    useEffect(() => {
+        
+       setProductInfo(data);
+       setPrice(Number(data.price) * quantity);
+       setPreferredSize(data.preferredSize)
+
+    }, [quantity]);
+
+
+    const addQuantity = () => {
+
+        setQuantity(quantity + 1);
+
+        const newPrice =  Number(data.price) * quantity
+        setPrice(newPrice);
+
+        updateProductQuantity(index, quantity + 1)
+        .then( () => activity() )
+        .catch( e => console.error(e.message) );
+
+    }
+
+    const changeSize = (e) => {
+
+        setPreferredSize(e.target.value);
+
+        updateProductSize(index, e.target.value)
+        .then( () => {activity(); console.log("here")} )
+        .catch( e => console.error(e.message) );
+
+    }
+     
+
+    const decreaseQuantity = () => {
+
+        if (quantity > 1) {
+
+            setQuantity(quantity - 1);
+
+            const newPrice =  Number(data.price) * quantity
+            setPrice(newPrice);
+
+            updateProductQuantity(index, quantity - 1)
+            .then( () => activity() )
+            .catch( e => console.error(e.message) );
+
+        };
+
+    }
+
+
+
   
     return (
         
-        <div className="item">
+        <div className="item" id = { productInfo.id } >
 
-            <div className="product_img">
-                <img src="https://firebasestorage.googleapis.com/v0/b/merchcreations-15ff6.appspot.com/o/categories%20%2F%20paperboy%20crossbag%20%2F%20merccreator_product_ida-7127.jpg?alt=media&token=10a9d4c2-6ed6-4845-8745-dba0bfdb387c" alt="product image" />
-            </div>
+            
+
 
             <div className="content">
 
-                <div className="product_name"> Tote Bag Product </div>
-                
-                <div className="priceStock"> 
-                    
-                    <span class = 'inStock' >In Stock</span></div>
-                
-                <div className="pool">
+                <div className="product_img">
+                    <img src={productInfo.photo} alt="product image" />
+                </div>
 
+                <div className="product_name"> 
+                
+                    {productInfo.ProductName} 
+
+                    <div className="categ">
+
+                        {productInfo.category} 
+                        
+                    </div>
+                
                     <div className="sizes">
 
-                        <select name="size" id="size">
-                            <option value="s">S</option>
-                            <option value="m">M</option>
-                            <option value="l">L</option>
-                            <option value="xl">XL</option>
-                            <option value="xxl">XXL</option>
+                        <select name="size" id="size" value = {preferredSize} onChange={ e => changeSize(e) } >
+
+                            {
+                                productInfo.sizes.map( (size, index) => {
+
+                                    return <option value={size} key = {index} > { size.toUpperCase() } </option>
+
+                                } )
+                            }
+
                         </select>
 
                     </div>
+                
+                </div>
 
-                    <div className="quantity">
+            </div>
 
-                        <div className="decreaseQuantity"> - </div>
-                        <p> 4 </p>
-                        <div className="increaseQuantity"> + </div>
+            <div className="pool">
 
-                    </div>
+                <div className="quantity">
 
-                    <div className="trash">
-                        <i className="fi fi-sr-trash"></i>
-                    </div>
+                    <div className="decreaseQuantity" onClick={ decreaseQuantity } > <i className="fi fi-sr-minus"></i> </div>
+                    <p> {quantity} </p>
+                    <div className="increaseQuantity" onClick = { addQuantity } > <i className="fi fi-sr-plus"></i> </div>
 
                 </div>
 
             </div>
 
-            <div className="price"> N45,000  </div>
+            <div className="price"> 
+            
+                <div className="pricePillow">
+                    N{ Number(price).toLocaleString() }
+                </div>
+                            
+                <div className="trash" onClick = { () => deleteProduct(productInfo.id) } >
+
+                    <i className="fi fi-rr-cross-small"></i>
+
+                </div>
+                
+            </div>
 
         </div>
   )

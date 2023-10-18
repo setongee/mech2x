@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import './header.scss'
 import mercLogo from '../../assets/logo/merc_logo.svg'
-import {getCartfromDB} from '../../apis/cart'
+import {getCartfromDB, getCartfromDBNumber} from '../../apis/cart'
 
 const Header = () => {
 
@@ -10,6 +10,8 @@ const Header = () => {
   let navigate = useNavigate()
   
   const [pathname, setPathname] = useState(location.pathname);
+  const [cartListing, setCartListing] = useState([]);
+
 
   //;logic for menu state
 
@@ -22,7 +24,9 @@ const Header = () => {
   }
 
   const closeMenu = () => {
+
     setMenuState(false);
+
   }
 
 
@@ -88,6 +92,11 @@ const Header = () => {
 
      closeMenu();
 
+
+     getCartfromDB()
+     .then( res => setCartListing(res) )
+
+
   }, [pathname]);
 
 
@@ -101,11 +110,11 @@ const Header = () => {
 
           <div className="mobileMenuOverlay">
 
-          <div className="closeBtn" onClick={ () => closeMenu() } ><i class="fi fi-rr-cross-circle"></i></div>
+          <div className="closeBtn" onClick={ () => closeMenu() } ><i className="fi fi-rr-cross-circle"></i></div>
   
             <div className="navigationSection">
   
-                <a href="/home" className="home nav_link"> Home  </a>
+                <a href="/" className="home nav_link"> Home  </a>
                 <a href="/shop" className="shop nav_link"> Shop  </a>
                 <a href="/tracking" className="tracking nav_link"> Tracking  </a>
   
@@ -138,7 +147,7 @@ const Header = () => {
 
           </div>
 
-          <div className="cartNumber">0</div>
+          <div className="cartNumber">{cartListing.length}</div>
 
         </div>
 
@@ -150,7 +159,7 @@ const Header = () => {
 
           <div className="hamburger" onClick={ () => openMenu() }>
 
-            <i class="fi fi-sr-menu-burger"></i>
+            <i className="fi fi-sr-menu-burger"></i>
 
           </div>
 

@@ -6,12 +6,10 @@ import { useLocation, useNavigate, redirect} from 'react-router-dom';
 
 export default function ShopHome({category, limit, classFix, view}) {
 
+
     const [products, setProducts] = useState([]);
     const [load, setLoad] = useState(false)
     let location = useLocation()
-
-    //console.log(category.data.displayName)
-    //console.log(category.data.categoryName)
 
 useEffect(() => {
 
@@ -31,9 +29,8 @@ useEffect(() => {
 
     })
 
-}, [category.data.categoryName]);
 
-   <div className="d">shop</div>
+}, [category.data.categoryName]);
 
 
   return (
@@ -70,7 +67,9 @@ useEffect(() => {
                 products.length ? products.map( (data, index) => {
 
                     if (index <= limit ) {
+
                         return <Products products = {data} key = {index} />
+
                     }
 
                 } ) : null

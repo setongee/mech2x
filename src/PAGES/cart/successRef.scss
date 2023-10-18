@@ -1,0 +1,43 @@
+.successRef{
+
+    background-color: #fff;
+    height: 100%;
+    padding: 30px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .successPlay{
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+
+        img{
+            width: 100%;
+        }
+    }
+
+    h1{
+        margin: 25px 0;
+        font-size: 40px;
+        margin-top: 10px;
+    }
+
+    p{
+        width: 30%;
+        margin-bottom: 50px;
+        line-height: 27px;
+    }
+
+    .backtoshop{
+
+        background-color: #000;
+        padding: 15px 25px;
+        color: #fff;
+        cursor: pointer;
+
+    }
+
+}
