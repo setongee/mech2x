@@ -82,8 +82,6 @@ export default function CartItem({data, deleteProduct, index, activity}) {
         
         <div className="item" id = { productInfo.id } >
 
-            
-
 
             <div className="content">
 
@@ -92,16 +90,45 @@ export default function CartItem({data, deleteProduct, index, activity}) {
                 </div>
 
                 <div className="product_name"> 
+
+                    {/* content Name */}
                 
-                    {productInfo.ProductName} 
+                    <div className="newName">
 
-                    <div className="categ">
+                        <div className="naming">
+                            {productInfo.ProductName} 
+                        </div>
 
-                        {productInfo.category} 
-                        
+                        <div className="flex_day">
+                            <div className="categ">
+
+                            {productInfo.category} 
+                            
+                        </div>
+
+                        </div>
+
                     </div>
-                
-                    <div className="sizes">
+
+                    {/* End of Content Naming */}
+
+                    {/* Quantity Section */}
+
+                    <div className="pool">
+
+                        <div className="quantity">
+
+                            <div className="decreaseQuantity" onClick={ decreaseQuantity } > <i className="fi fi-sr-minus"></i> </div>
+                            <p> {quantity} </p>
+                            <div className="increaseQuantity" onClick = { addQuantity } > <i className="fi fi-sr-plus"></i> </div>
+
+                        </div>
+
+                    </div>
+
+                    {/* End of quantity Section */}
+
+                    {/* <div className="sizes">
 
                         <select name="size" id="size" value = {preferredSize} onChange={ e => changeSize(e) } >
 
@@ -115,23 +142,11 @@ export default function CartItem({data, deleteProduct, index, activity}) {
 
                         </select>
 
-                    </div>
+                    </div> */}
+
                 
                 </div>
 
-            </div>
-
-            <div className="pool">
-
-                <div className="quantity">
-
-                    <div className="decreaseQuantity" onClick={ decreaseQuantity } > <i className="fi fi-sr-minus"></i> </div>
-                    <p> {quantity} </p>
-                    <div className="increaseQuantity" onClick = { addQuantity } > <i className="fi fi-sr-plus"></i> </div>
-
-                </div>
-
-            </div>
 
             <div className="price"> 
             
@@ -146,6 +161,8 @@ export default function CartItem({data, deleteProduct, index, activity}) {
                 </div>
                 
             </div>
+
+        </div>
 
         </div>
   )

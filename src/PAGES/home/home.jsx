@@ -58,11 +58,13 @@ const [ shopCategories, setShopCategories ] = useState([])
 
           {/* swiper Ends */}
 
+
         </div>
+
 
         <div className="photoArea_xl rex">
 
-          <div className="circleLoad"> Be the Best</div>
+          <div className="circleLoad"> Wear the Best</div>
 
             <div className="photoSlide1">
               <img src={t4} alt="" />

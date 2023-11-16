@@ -169,7 +169,7 @@ const Header = () => {
 
         </div>
 
-        <div className="cartSection">
+        <div className="cartSection" onClick={ () => { navigate('/cart'); setPathname('/cart')} }>
 
           <div className="cartIcon">
 

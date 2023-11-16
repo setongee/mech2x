@@ -32,6 +32,8 @@ useEffect(() => {
 
 }, [category.data.categoryName]);
 
+console.log(category)
+
 
   return (
 
@@ -52,7 +54,7 @@ useEffect(() => {
             <h1> {category.data.displayName} </h1> 
             
             {
-                view ? <p onClick={ () => window.location.href = '/shop' } > View All <i className="fi fi-rr-arrow-right"></i> </p> : null
+                view ? <p onClick={ () => window.location.href = `/shop/${category}` } > View All <i className="fi fi-rr-arrow-right"></i> </p> : null
             }
 
        </div>

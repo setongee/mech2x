@@ -15,7 +15,7 @@ export default function PaystackPaymentModal({shipping, price, delivery, closePa
         reference: (new Date()).getTime().toString(),
         email: shipping.email,
         amount: (price + delivery) * 100,
-        publicKey: 'pk_test_3bf17d5bf39878cc53b53a151648c3d404936307',
+        publicKey: 'pk_live_99d322807edd18dffe32153e5c6fdff623665876',
 
     };
 
