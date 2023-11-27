@@ -52,7 +52,7 @@
         display: flex;
         overflow-x: scroll;
         gap: 30px;
-        justify-content: center;
+        justify-content: flex-start;
 
         &.shopLand{
             overflow-x: hidden;
@@ -159,7 +159,8 @@
     .shopHome{
 
 
-    padding: 0 30px;
+        padding: 0 30px;
+        background-color: red;
 
         .headerCat{
 
@@ -179,7 +180,7 @@
             display: flex;
             overflow-x: scroll;
             gap: 30px;
-            justify-content: center;
+            justify-content: flex-start;
     
             &.shopLand{
                 overflow-x: hidden;

@@ -30,9 +30,10 @@ useEffect(() => {
     })
 
 
+
 }, [category.data.categoryName]);
 
-console.log(category)
+
 
 
   return (

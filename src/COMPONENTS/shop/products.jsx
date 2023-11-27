@@ -3,6 +3,7 @@ import { addProductToCart, getCartfromDB } from '../../apis/cart'
 
 export default function Products({products, mix}) {
 
+
 const addToCart = () => {
 
     addProductToCart(products.uid);

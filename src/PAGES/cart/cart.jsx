@@ -264,12 +264,22 @@ export default function Cart() {
 
   }
 
-  setDelivery(shipping.stateResidence);
+  if (shipping.lgaResidence === 'ife central') {
+    
+      setDelivery(0);
 
-setDelivery(deliveryStates[shipping.stateResidence]);
+  } else {
+
+    setDelivery(deliveryStates[shipping.stateResidence])
+
+  }
+  
 
 
-  }, [cartAction, shipping.stateResidence, billingModal]);
+
+  }, [cartAction, shipping.stateResidence, billingModal, shipping.lgaResidence]);
+
+  console.log(shipping.lgaResidence)
 
 
   return (
