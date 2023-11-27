@@ -39,3 +39,55 @@
 
 
 }
+
+@media (max-width :  768px) {
+
+    .shopArea{
+    }
+
+    .shoppingHeader{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 30px;
+        padding-bottom: 0;
+        margin-bottom: 100px;
+        width: calc(100%);
+        margin-left: 0;
+        margin-right: 0;
+    
+        .filters{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+    
+            .filter{
+                text-transform: uppercase;
+                font-size: 14px;
+                cursor: pointer;
+                padding: 10px 20px;
+                border-radius: 100px;
+    
+                &.current{
+                    background-color: #000;
+                    font-weight: bold;
+                    color: #fff;
+                    border-radius: 8px;
+                }
+            }
+        }
+    
+        .bigShop{
+    
+            margin-bottom: 90px;
+            font-size: 24px;
+        }
+    
+    
+    
+    }
+    
+
+}

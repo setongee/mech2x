@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {states} from './NigeriaAPI'
 import emptybag from '../../assets/images/emptybag.svg'
 import PaystackPaymentModal from './paystackPaymentModal';
+import { deliveryStates } from './delivery';
 
 export default function Cart() {
 
@@ -262,6 +263,10 @@ export default function Cart() {
     setPrice(total)
 
   }
+
+  setDelivery(shipping.stateResidence);
+
+setDelivery(deliveryStates[shipping.stateResidence]);
 
 
   }, [cartAction, shipping.stateResidence, billingModal]);

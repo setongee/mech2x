@@ -52,6 +52,7 @@
         display: flex;
         overflow-x: scroll;
         gap: 30px;
+        justify-content: center;
 
         &.shopLand{
             overflow-x: hidden;
@@ -178,6 +179,7 @@
             display: flex;
             overflow-x: scroll;
             gap: 30px;
+            justify-content: center;
     
             &.shopLand{
                 overflow-x: hidden;

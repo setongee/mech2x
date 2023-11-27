@@ -54,7 +54,7 @@ console.log(category)
             <h1> {category.data.displayName} </h1> 
             
             {
-                view ? <p onClick={ () => window.location.href = `/shop/${category}` } > View All <i className="fi fi-rr-arrow-right"></i> </p> : null
+                view ? <p onClick={ () => window.location.href = `/shop?filters=${category.data.categoryName}` } > View All <i className="fi fi-rr-arrow-right"></i> </p> : null
             }
 
        </div>
