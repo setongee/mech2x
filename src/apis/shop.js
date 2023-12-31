@@ -3,7 +3,7 @@ import axios from 'axios'
 const liveUrl = "https://merccreator-61fcd5f4349d.herokuapp.com"
 const testUrl = "http://localhost:3300"
 
-const currentUse = liveUrl;
+const currentUse = testUrl;
 
 export const getCategory = async () => {
 
