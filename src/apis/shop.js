@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const liveUrl = "https://merccreator-61fcd5f4349d.herokuapp.com"
+const liveUrl = "https://walrus-app-fbyvn.ondigitalocean.app"
 const testUrl = "http://localhost:3300"
 
 const currentUse = liveUrl;
