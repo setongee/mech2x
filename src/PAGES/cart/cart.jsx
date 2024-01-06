@@ -107,6 +107,9 @@ export default function Cart() {
 
     setBillingModal(false);
     setShipping(initialData);
+    
+    const body = document.querySelector('.cartHolder');
+    body.style.overflow = "hidden";
 
   }
 
@@ -280,6 +283,25 @@ export default function Cart() {
   }, [cartAction, shipping.stateResidence, billingModal, shipping.lgaResidence]);
 
   console.log(shipping.lgaResidence)
+
+  
+  // Effect Billing Details
+
+
+  useEffect(() => {
+
+    const body = document.querySelector('.cartHolder');
+    const fix = window.screen;
+
+    
+    if ( billingModal && fix.width <= 768 ) {
+      
+      body.style.overflow = "hidden";
+
+    }
+
+
+  }, [billingModal]);
 
 
   return (
