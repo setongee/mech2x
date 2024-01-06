@@ -296,7 +296,7 @@ export default function Cart() {
 
             <div className="billArea">
 
-                <div className="tag">Add your shipping details</div>
+                <div className="tag">Hey, add your shipping details</div>
                 <p>Kindly fill out your shipping address for payment</p>
 
                 <div className="closeBilling" onClick={ () => CloseBilling() } > <i className="fi fi-rr-cross-small"></i> </div>
