@@ -100,6 +100,16 @@ export default function Cart() {
   const OpenBilling = () => {
 
     setBillingModal(true);
+    
+    const body = document.querySelector('.cartHolder');
+    const fix = window.screen;
+
+    
+    if ( billingModal && fix.width <= 768 ) {
+      
+      body.style.overflow = "hidden";
+
+    }
 
   }
 
