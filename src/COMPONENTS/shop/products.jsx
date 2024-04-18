@@ -3,7 +3,6 @@ import { addProductToCart, getCartfromDB } from '../../apis/cart'
 
 export default function Products({products, mix}) {
 
-
 const addToCart = () => {
 
     addProductToCart(products.uid);
@@ -12,6 +11,7 @@ const addToCart = () => {
 }
 
 const [addedToCart, setAddedToCart] = useState(false);
+const [coverIndex, setCoverIndex] = useState(0)
 
 useEffect(() => {
 
@@ -27,8 +27,14 @@ useEffect(() => {
 
     } )
     
-
 }, []);
+
+
+const productPhoto = () => {
+
+    
+
+}
 
 
   return (
@@ -37,7 +43,20 @@ useEffect(() => {
 
         <div className="imageProd">
 
-            <img src= {products.data.photo} alt="" />
+            <img src= {Object.values(products.data.photo)[coverIndex]} alt="" />
+
+        </div>
+
+        <div className="otherPics"> 
+
+            {
+                Object.values(products.data.photo).map((pics, index) => {
+
+                    return <div key = {index} className="picsOther" onClick={ () => setCoverIndex(index) }> <img src={pics} alt={index} /> </div>
+
+                })
+            }
+            
 
         </div>
 
@@ -57,7 +76,7 @@ useEffect(() => {
                 <div className="sizes">
 
                     {
-                        products.data.sizes.map( (data, index) => <div key = {index} className="size">{data}</div> )
+                        Object.entries(products.data.sizes).map( ( data, index ) => <div key = {index} className="size"> {data[1]} </div> )
                     }
 
                 </div>

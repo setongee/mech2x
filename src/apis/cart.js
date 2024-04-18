@@ -46,13 +46,19 @@ export const clearCart = async () => {
 export const addProductToCart =async (req, size) => {
 
     const db = window.localStorage.getItem("cart");
+
+    console.log(req)
     
     if (db !== null) {
 
         const dbx = JSON.parse(db);
         const arr = dbx;
 
-        await getSingleProduct(req).then( res => arr.push( { ...res.data , quantity : 1, preferredSize : res.data.sizes[0] }));
+        await getSingleProduct(req).then( res => { 
+
+            arr.push( { ...res.data , quantity : 1, preferredSize : res.data.sizes[0] } );
+        
+        } );
         window.localStorage.setItem("cart", JSON.stringify(arr));
 
     } else {

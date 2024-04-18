@@ -22,6 +22,8 @@ const [ shopCategories, setShopCategories ] = useState([])
 
     setShopCategories(e.reverse());
 
+    console.log(shopCategories);
+
   })
 
  }, []);

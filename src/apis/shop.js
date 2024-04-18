@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const liveUrl = "https://walrus-app-fbyvn.ondigitalocean.app"
+const liveUrl = "https://starfish-app-l54sf.ondigitalocean.app"
 const testUrl = "http://localhost:3300"
 
 const currentUse = liveUrl;

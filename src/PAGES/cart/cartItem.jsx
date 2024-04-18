@@ -21,7 +21,8 @@ export default function CartItem({data, deleteProduct, index, activity}) {
 
     const [quantity, setQuantity] = useState(data.quantity);
     const [price, setPrice] = useState(data.price);
-    const [preferredSize, setPreferredSize] = useState("")
+    const [preferredSize, setPreferredSize] = useState("");
+    const [coverPhoto, setCoverPhoto] = useState('#')
 
 
 
@@ -29,7 +30,11 @@ export default function CartItem({data, deleteProduct, index, activity}) {
         
        setProductInfo(data);
        setPrice(Number(data.price) * quantity);
-       setPreferredSize(data.preferredSize)
+       setPreferredSize(data.preferredSize);
+
+       const cover = data.photo;
+        const coverImage = Object.values(cover)[0];
+        setCoverPhoto(coverImage);
 
     }, [quantity]);
 
@@ -43,7 +48,7 @@ export default function CartItem({data, deleteProduct, index, activity}) {
 
         updateProductQuantity(index, quantity + 1)
         .then( () => activity() )
-        .catch( e => console.error(e.message) );
+        //.catch( e => console.error(e.message) );
 
     }
 
@@ -52,8 +57,8 @@ export default function CartItem({data, deleteProduct, index, activity}) {
         setPreferredSize(e.target.value);
 
         updateProductSize(index, e.target.value)
-        .then( () => {activity(); console.log("here")} )
-        .catch( e => console.error(e.message) );
+        .then( () => {activity();} )
+        // .catch( e => console.error(e.message) );
 
     }
      
@@ -69,7 +74,7 @@ export default function CartItem({data, deleteProduct, index, activity}) {
 
             updateProductQuantity(index, quantity - 1)
             .then( () => activity() )
-            .catch( e => console.error(e.message) );
+            // .catch( e => console.error(e.message) );
 
         };
 
@@ -86,7 +91,7 @@ export default function CartItem({data, deleteProduct, index, activity}) {
             <div className="content">
 
                 <div className="product_img">
-                    <img src={productInfo.photo} alt="product image" />
+                    <img src={coverPhoto} alt="product image" />
                 </div>
 
                 <div className="product_name"> 
@@ -108,41 +113,48 @@ export default function CartItem({data, deleteProduct, index, activity}) {
 
                         </div>
 
+                        <div className="sizes">
+
+                        <div className="newZone">
+
+                            <select name="size" id="size" value = {preferredSize} onChange={ e => changeSize(e) } >
+
+                                {
+                                    Object.values(productInfo.sizes).map( (size, index) => {
+
+                                        return <option value={size} key = {index} > { size.toUpperCase() } </option>
+
+                                    } )
+                                }
+
+                            </select>
+
+                            <div className="pool">
+
+                                <div className="quantity">
+
+                                    <div className="decreaseQuantity" onClick={ decreaseQuantity } > <i className="fi fi-sr-minus"></i> </div>
+                                    <p> {quantity} </p>
+                                    <div className="increaseQuantity" onClick = { addQuantity } > <i className="fi fi-sr-plus"></i> </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                     </div>
 
                     {/* End of Content Naming */}
 
                     {/* Quantity Section */}
 
-                    <div className="pool">
-
-                        <div className="quantity">
-
-                            <div className="decreaseQuantity" onClick={ decreaseQuantity } > <i className="fi fi-sr-minus"></i> </div>
-                            <p> {quantity} </p>
-                            <div className="increaseQuantity" onClick = { addQuantity } > <i className="fi fi-sr-plus"></i> </div>
-
-                        </div>
-
-                    </div>
-
+                    
                     {/* End of quantity Section */}
 
-                    {/* <div className="sizes">
-
-                        <select name="size" id="size" value = {preferredSize} onChange={ e => changeSize(e) } >
-
-                            {
-                                productInfo.sizes.map( (size, index) => {
-
-                                    return <option value={size} key = {index} > { size.toUpperCase() } </option>
-
-                                } )
-                            }
-
-                        </select>
-
-                    </div> */}
+                    
 
                 
                 </div>

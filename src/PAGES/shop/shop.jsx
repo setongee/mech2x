@@ -52,6 +52,8 @@ export default function Shop() {
 
     }
 
+    console.log(shopCategories);
+
   }, [filterValue]);
 
 
